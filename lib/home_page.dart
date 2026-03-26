@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reactivehub/controllers/cubit/counter_cubit.dart';
+import 'package:reactivehub/controllers/bloc/counter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             // الـ BlocBuilder دلوقتي بقى "موضعي" فقط حول الجزء المتغير
-            BlocBuilder<CounterCubit, CounterState>(
+            BlocBuilder<CounterBloc, CounterState>(
               builder: (context, state) {
                 // الـ build دي هتطبع كل ما العداد يتغير
                 print('build text only');
@@ -42,13 +42,18 @@ class HomePage extends StatelessWidget {
         children: [
           FloatingActionButton(
             heroTag: 'add', // متنساش الـ tags عشان الـ Hero error اللي حليناه
-            onPressed: () => context.read<CounterCubit>().increment(),
+            onPressed: () => context.read<CounterBloc>().add(IncremetEvent()),
             child: const Icon(Icons.add),
           ),
           FloatingActionButton(
             heroTag: 'remove',
-            onPressed: () => context.read<CounterCubit>().decrement(),
+            onPressed: () => context.read<CounterBloc>().add(DecrementEvent()),
             child: const Icon(Icons.remove),
+          ),
+          FloatingActionButton(
+            heroTag: 'Rest',
+            onPressed: () => context.read<CounterBloc>().add(ResetEvent()),
+            child: Text('0'),
           ),
         ],
       ),
