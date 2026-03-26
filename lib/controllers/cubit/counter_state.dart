@@ -6,9 +6,11 @@ sealed class CounterState {
 }
 
 class CounterInit extends CounterState {
-  CounterInit() : super(0);
+  CounterInit() : super(10);
 }
 
 class CounterUpdate extends CounterState {
+  // بنستلم الرقم هنا (int counter) وبعدين نبعته للأب (super)
+  // CounterUpdate(int counter) : super(counter);
   CounterUpdate(super.counter);
 }
