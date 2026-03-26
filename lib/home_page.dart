@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             BlocBuilder<CounterBloc, CounterState>(
               builder: (context, state) {
                 // الـ build دي هتطبع كل ما العداد يتغير
-                print('build text only');
+                print('state value ${state.counter}');
                 return Text(
                   '${state.counter}',
                   style: const TextStyle(
