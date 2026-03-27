@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:reactivehub/controllers/cubit/task_cubit.dart';
+import 'package:reactivehub/controllers/bloc/taskbc_bloc.dart';
+
 import 'package:reactivehub/models/task_model.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   final TextEditingController textEditingController = TextEditingController();
-   
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +23,8 @@ class HomePage extends StatelessWidget {
         foregroundColor: Colors.black,
       ),
       body: BlocProvider(
-        create: (context) => TaskCubit(),
-        child: BlocBuilder<TaskCubit, TaskState>(
+        create: (context) => TaskbcBloc(),
+        child: BlocBuilder<TaskbcBloc, TaskbcState>(
           builder: (context, state) {
             return Padding(
               padding: const EdgeInsets.all(16.0),
@@ -58,13 +59,14 @@ class HomePage extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () {
-                            if (textEditingController.text.trim().isEmpty)
+                            if (textEditingController.text.trim().isEmpty) {
                               return;
-                            context.read<TaskCubit>().addTask(
-                              textEditingController.text,
+                            }
+                            context.read<TaskbcBloc>().add(
+                              AddEvent(textEditingController.text),
                             );
                             textEditingController.clear();
-                            FocusScope.of(context).unfocus(); 
+                            FocusScope.of(context).unfocus();
                           },
                           icon: const Icon(
                             Icons.add_circle,
@@ -125,7 +127,7 @@ class HomePage extends StatelessWidget {
           activeColor: Colors.green,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           onChanged: (value) {
-            context.read<TaskCubit>().toogleTask(task.id);
+            context.read<TaskbcBloc>().add(ToogleEvent(task.id));
           },
         ),
         title: Text(
@@ -138,7 +140,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         trailing: IconButton(
-          onPressed: () => context.read<TaskCubit>().removeTask(task.id),
+          onPressed: () => context.read<TaskbcBloc>().add(RemoveEvent(task.id)),
           icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
         ),
       ),

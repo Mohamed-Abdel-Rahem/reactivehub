@@ -1,17 +1,17 @@
-part of 'task_cubit.dart';
+// part of 'task_cubit.dart';
 
-sealed class TaskState extends Equatable {
-  final List<TaskModel> tasksList;
-  const TaskState(this.tasksList);
+// sealed class TaskState extends Equatable {
+//   final List<TaskModel> tasksList;
+//   const TaskState(this.tasksList);
 
-  @override
-  List<Object> get props => [tasksList];
-}
+//   @override
+//   List<Object> get props => [tasksList];
+// }
 
-final class TaskInitial extends TaskState {
-  TaskInitial() : super([]);
-}
+// final class TaskInitial extends TaskState {
+//   TaskInitial() : super([]);
+// }
 
-final class UpdateTask extends TaskState {
-  const UpdateTask(super.tasksList);
-}
+// final class UpdateTask extends TaskState {
+//   const UpdateTask(super.tasksList);
+// }
