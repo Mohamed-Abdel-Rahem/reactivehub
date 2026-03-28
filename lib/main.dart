@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:reactivehub/home.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reactivehub/controllers/cubit/product_cubit.dart';
+import 'home.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,7 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // الحل هنا: بنغلف التطبيق بـ BlocProvider
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ProductCubit>(
+          create: (context) => ProductCubit()..getProducts(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
+      ),
+    );
   }
 }

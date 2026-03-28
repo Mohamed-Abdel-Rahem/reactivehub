@@ -2,9 +2,10 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 @immutable
+// ignore: must_be_immutable
 class ProductModel extends Equatable {
   List<ProductModel> products = [];
-  final String id;
+  final int id;
   final String categories;
   final String title;
   final String description;
@@ -36,7 +37,7 @@ class ProductModel extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props =>
-      throw [id, title, description, price, imageUrl, ratingModel,categories,];
+      [id, title, description, price, imageUrl, ratingModel, categories];
 }
 
 class Rating extends Equatable {
