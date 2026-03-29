@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:reactivehub/controllers/bloc/counter_bloc.dart';
 import 'package:reactivehub/controllers/cubit/counter_cubit.dart';
+
 import 'package:reactivehub/home_page.dart';
-import 'package:reactivehub/models/user_model.dart';
 
 Future<void> main() async {
-
-WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory:  HydratedStorageDirectory((await getTemporaryDirectory()).path),
+    storageDirectory: HydratedStorageDirectory(
+      (await getTemporaryDirectory()).path,
+    ),
   );
   runApp(
     MultiProvider(

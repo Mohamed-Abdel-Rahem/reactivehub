@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reactivehub/controllers/bloc/counter_bloc.dart';
+import 'package:reactivehub/controllers/cubit/counter_cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
             child: const Icon(Icons.add),
           ),
           FloatingActionButton(
-            heroTag: 'remove',
+            heroTag: 'sub',
             onPressed: () => context.read<CounterBloc>().add(DecrementEvent()),
             child: const Icon(Icons.remove),
           ),
