@@ -4,7 +4,6 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:reactivehub/controllers/bloc/counter_bloc.dart';
-import 'package:reactivehub/controllers/cubit/counter_cubit.dart';
 
 import 'package:reactivehub/home_page.dart';
 
