@@ -37,6 +37,7 @@ dependencies:
   provider: ^6.1.5+1
   flutter_bloc:
   equatable: 
+  hydrated_bloc:
 
 dev_dependencies:
   flutter_test:
