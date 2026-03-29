@@ -39,6 +39,8 @@ dependencies:
   uuid: 
   equatable:
   http: 
+  cached_network_image: 
+  dio: 
 
 dev_dependencies:
   flutter_test:

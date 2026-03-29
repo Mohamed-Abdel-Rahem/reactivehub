@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reactivehub/controllers/bloc/product_list/view_data_bloc.dart';
 import 'package:reactivehub/controllers/cubit/product_cubit.dart';
+import 'package:reactivehub/home_screen.dart';
 import 'home.dart';
 
 void main() {
@@ -12,16 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<ProductCubit>(
-          create: (context) => ProductCubit()..getProducts(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: const HomePage(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
     );
   }
 }
+ 

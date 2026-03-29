@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 @immutable
 // ignore: must_be_immutable
 class ProductModel extends Equatable {
-  List<ProductModel> products = [];
   final int id;
   final String categories;
   final String title;
@@ -13,7 +12,7 @@ class ProductModel extends Equatable {
   final String imageUrl;
   final Rating ratingModel;
 
-  ProductModel({
+  const ProductModel({
     required this.id,
     required this.title,
     required this.description,

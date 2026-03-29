@@ -17,4 +17,15 @@ class ProductRepo {
       throw Exception('Failed to load products');
     }
   }
+
+  Future<ProductModel> getProductById(int id) async {
+    var url = Uri.https('fakestoreapi.com', 'products/$id');
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return ProductModel.fromJson(data);
+    } else {
+      throw Exception('Failed to load products');
+    }
+  }
 }
