@@ -1,7 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:equatable/equatable.dart';
 
 class TaskModel extends Equatable {
+  
   final String title;
   final String id;
   final bool isCompleted;
@@ -12,14 +13,36 @@ class TaskModel extends Equatable {
     required this.isCompleted,
   });
   @override
-  // TODO: implement props
-  List<Object?> get props => [id, title, isCompleted];
 
-  TaskModel copyWith({String? title, String? id, bool? isCompleted}) {
+  List<Object> get props => [title, id, isCompleted];
+
+  TaskModel copyWith({
+    String? title,
+    String? id,
+    bool? isCompleted,
+  }) {
     return TaskModel(
       title: title ?? this.title,
       id: id ?? this.id,
       isCompleted: isCompleted ?? this.isCompleted,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'id': id,
+      'isCompleted': isCompleted,
+    };
+  }
+
+  factory TaskModel.fromJson(Map<String, dynamic> map) {
+    return TaskModel(
+      title: map['title'] as String,
+      id: map['id'] as String,
+      isCompleted: map['isCompleted'] as bool,
+    );
+  }
+
+ 
 }

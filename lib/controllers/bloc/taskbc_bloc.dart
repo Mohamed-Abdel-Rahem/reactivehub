@@ -1,12 +1,12 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:reactivehub/models/task_model.dart';
 import 'package:uuid/uuid.dart';
 
 part 'taskbc_event.dart';
 part 'taskbc_state.dart';
 
-class TaskbcBloc extends Bloc<TaskbcEvent, TaskbcState> {
+class TaskbcBloc extends HydratedBloc<TaskbcEvent, TaskbcState> {
   TaskbcBloc() : super(TaskbcInitial()) {
     on<AddEvent>((event, emit) {
       TaskModel model = TaskModel(
@@ -37,5 +37,19 @@ class TaskbcBloc extends Bloc<TaskbcEvent, TaskbcState> {
       }).toList();
       emit(UpdatebcTask(newList));
     });
+  }
+
+  @override
+  TaskbcState? fromJson(Map<String, dynamic> json) {
+    return UpdatebcTask(
+      (json['tasksList'] as List<dynamic>)
+          .map((task) => TaskModel.fromJson(task))
+          .toList(),
+    );
+  }
+
+  @override
+  Map<String, dynamic>? toJson(TaskbcState state) {
+    return {'tasksList': state.tasksList.map((task) => task.toJson()).toList()};
   }
 }
