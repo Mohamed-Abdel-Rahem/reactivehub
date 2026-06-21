@@ -9,6 +9,7 @@ sealed class CounterState extends Equatable {
 }
 
 class CounterInit extends CounterState {
+  
   const CounterInit() : super(0, 0);
 }
 

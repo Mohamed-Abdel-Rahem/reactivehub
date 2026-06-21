@@ -25,7 +25,6 @@
 //   }
 
 //   @override
-
 //   Map<String, dynamic>? toJson(CounterState state) {
 //     return {'counter': state.counter};
 //   }
